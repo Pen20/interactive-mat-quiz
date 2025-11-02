@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Math Quiz</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🎯 Interactive Math Quiz</h1>
+        <p>
+          Practice and master mathematical concepts with AI-powered feedback
+        </p>
+      </header>
+
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <div class="quiz-icon">📊</div>
+          <h3>Linear Algebra</h3>
+          <p>Solve linear equations with step-by-step guidance</p>
+          <a href="html/algebra-quiz.html" class="quiz-button"
+            >Start Practice</a
+          >
+        </div>
+
+        <div class="quiz-card">
+          <div class="quiz-icon">🔄</div>
+          <h3>System of Equations</h3>
+          <p>Find equations with no solutions and understand parallel lines</p>
+          <a href="html/equations-quiz.html" class="quiz-button"
+            >Start Practice</a
+          >
+        </div>
+
+        <div class="quiz-card">
+          <div class="quiz-icon">🧮</div>
+          <h3>Matrix Determinant</h3>
+          <p>Calculate determinants and find critical values</p>
+          <a href="html/determinant-quiz.html" class="quiz-button"
+            >Start Practice</a
+          >
+        </div>
+      </div>
+
+      <div class="api-config">
+        <h3>OpenAI Configuration</h3>
+        <div class="config-form">
+          <!-- <input
+            type="password"
+            id="openai-key"
+            placeholder="Enter your OpenAI API key"
+            class="api-input"
+          /> -->
+          <select id="gpt-model" class="model-select">
+            <option value="gpt-4o-mini">GPT-4o-mini</option>
+            <option value="gpt-4o">GPT-4o</option>
+            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+          </select>
+          <button id="save-config" class="config-button">
+            Save Configuration
+          </button>
+        </div>
+        <p class="config-note">
+          Your device stores only the selected model. The OpenAI key is kept
+          securely on the server.
+        </p>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+      const modelEl = document.getElementById("gpt-model");
+      const savedModel = localStorage.getItem("openai_model");
+      if (savedModel) modelEl.value = savedModel;
+
+      document.getElementById("save-config").addEventListener("click", () => {
+        window.openAIService.initialize(modelEl.value);
+        alert("Model saved.");
+      });
+    </script>
+  </body>
+</html>

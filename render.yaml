@@ -1,0 +1,24 @@
+# render.yaml
+# Auto-deployment configuration for Render.com
+# Deploys both the Express server and static frontend.
+
+services:
+  - type: web
+    name: interactive-math-quiz
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3080
+      - key: FRONTEND_ORIGIN
+        value: https://interactive-math-quiz.onrender.com
+      - key: OPENAI_API_KEY
+        sync: false # you will add this manually in Render’s dashboard
+
+staticPublishPath: .

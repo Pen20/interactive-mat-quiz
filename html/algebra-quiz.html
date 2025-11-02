@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algebra Quiz - Interactive Math Quiz</title>
+    <link rel="stylesheet" href="../css/quiz-common.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <a href="/" class="back-button">← Back to Main Menu</a>
+
+      <h1 class="quiz-title">Linear Algebra</h1>
+
+      <div class="question-text">
+        <div class="question-display">
+          <h4>Problem Statement:</h4>
+          <p id="question-text">Solve for x in the linear equation.</p>
+        </div>
+
+        <button class="button secondary" id="new-question">
+          Generate New Question
+        </button>
+
+        <div class="custom-input">
+          <label for="user-answer">Your Answer:</label>
+          <input
+            type="text"
+            id="user-answer"
+            placeholder="Enter your answer here..."
+          />
+          <div class="validation" id="validation-answer"></div>
+        </div>
+
+        <div class="help-section">
+          <button class="button secondary" id="show-hints">
+            Need Help? Show Hints
+          </button>
+        </div>
+
+        <div class="reasoning-section">
+          <h3>Explain Your Reasoning</h3>
+          <p>
+            Please describe the steps you took to solve this problem. You can
+            use mathematical notation:
+          </p>
+
+          <div class="math-help">
+            <h5>Mathematical Notation Help:</h5>
+            <div class="math-examples">
+              <div class="math-example">Fractions: $\frac{a}{b}$</div>
+              <div class="math-example">Exponents: $x^2$, $y^{n+1}$</div>
+              <div class="math-example">Square root: $\sqrt{x}$</div>
+              <div class="math-example">Equations: $x = \frac{-b}{2a}$</div>
+            </div>
+            <p style="margin-top: 10px; font-size: 14px">
+              <strong>Usage:</strong> Use $...$ for inline math and $$...$$ for
+              display math.
+            </p>
+          </div>
+
+          <textarea
+            class="reasoning-input"
+            id="reasoning-input"
+            placeholder="Enter your step-by-step reasoning here. Use $...$ for inline math and $$...$$ for display math."
+            rows="4"
+          ></textarea>
+
+          <div class="latex-validation hidden" id="latex-validation"></div>
+
+          <div class="math-preview">
+            <div class="math-preview-label">Live Preview:</div>
+            <div id="math-preview-content">
+              Your mathematical notation will appear here as you type...
+            </div>
+          </div>
+
+          <div class="reasoning-feedback" id="reasoning-feedback"></div>
+        </div>
+
+        <div class="input-status">
+          <div class="status-item">
+            <span id="answer-status-icon" class="status-cross">✗</span>
+            <span>Answer provided</span>
+          </div>
+          <div class="status-item">
+            <span id="reasoning-status-icon" class="status-cross">✗</span>
+            <span>Reasoning provided</span>
+          </div>
+          <div class="status-item">
+            <span id="latex-status-icon" class="status-cross">✗</span>
+            <span>Valid LaTeX syntax</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="button primary" id="check-answer" disabled>
+            Check Solution
+          </button>
+          <button class="button secondary" id="show-solution">
+            Show Solution
+          </button>
+          <button class="button secondary" id="show-steps">Show Steps</button>
+          <button class="button success" id="clear-all">Clear All</button>
+        </div>
+
+        <div class="ai-feedback-enhanced hidden" id="ai-feedback-enhanced">
+          <h4>🤖 AI Feedback</h4>
+          <div
+            class="ai-feedback-content-enhanced"
+            id="ai-feedback-content-enhanced"
+          ></div>
+        </div>
+
+        <div class="custom-hint hidden" id="hint">
+          <h4>Helpful Hints</h4>
+          <p>
+            <strong>Hint 1:</strong> Isolate the variable term by performing
+            inverse operations.
+          </p>
+          <p>
+            <strong>Hint 2:</strong> Remember to perform the same operation on
+            both sides of the equation.
+          </p>
+          <p>
+            <strong>Hint 3:</strong> Check your answer by substituting it back
+            into the original equation.
+          </p>
+        </div>
+
+        <div class="custom-hint hidden" id="examples">
+          <h4>Example Solutions</h4>
+          <p>
+            <strong>Example:</strong> For $$2x + 5 = 13$$, subtract 5 from both
+            sides: $$2x = 8$$, then divide by 2: $$x = \frac{8}{2} = 4$$
+          </p>
+          <p>
+            <strong>Common Mistakes:</strong> Forgetting to perform operations
+            on both sides, or making sign errors.
+          </p>
+        </div>
+      </div>
+
+      <div class="feedback hidden" id="feedback"></div>
+
+      <div class="step-by-step hidden" id="step-by-step">
+        <h3>Step-by-Step Solution</h3>
+        <div id="steps-content"></div>
+      </div>
+
+      <div class="solution hidden" id="solution">
+        <h3>Complete Solution</h3>
+        <div id="solution-content"></div>
+      </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/openai-service.js"></script>
+    <script src="../js/algebra-quiz.js"></script>
+  </body>
+</html>
