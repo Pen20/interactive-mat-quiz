@@ -3,7 +3,7 @@
 An interactive web platform to **practice and master mathematical concepts** — powered by **OpenAI feedback**.  
 Learners can solve algebra equations, system of equations, and matrix determinants with instant AI feedback and step-by-step hints.
 
-![App Preview](assets\background_image.png)
+![App Preview](assets/background_image.png)
 
 ---
 
